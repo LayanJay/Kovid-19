@@ -3,17 +3,17 @@
   "name": "Covid 19 Tracker",
   "icons": [
     {
-      "src": "coronavirus.png",
+      "src": "coronavirusRed.png",
       "sizes": "64x64 32x32 24x24 16x16",
       "type": "image/x-icon/svg"
     },
     {
-      "src": "coronavirus.png",
+      "src": "coronavirusRed.png",
       "type": "image/png",
       "sizes": "192x192"
     },
     {
-      "src": "coronavirus.png",
+      "src": "coronavirusRed.png",
       "type": "image/png",
       "sizes": "512x512"
     }
