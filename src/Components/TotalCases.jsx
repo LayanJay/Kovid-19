@@ -1,4 +1,5 @@
 import React from "react";
+import numeral from "numeral";
 import "./TotalCases.css";
 
 function TotalCases({ data }) {
@@ -7,7 +8,9 @@ function TotalCases({ data }) {
       {data.map(({ country, cases }) => (
         <tr>
           <td>{country}</td>
-          <td>{cases}</td>
+          <td>
+            <strong>{numeral(cases).format("0,0")}</strong>
+          </td>
         </tr>
       ))}
     </div>

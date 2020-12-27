@@ -11,9 +11,10 @@ import React, { useState, useEffect } from "react";
 import "./App.css";
 import CasesCard from "./Components/CasesCard";
 import LineChart from "./Components/LineChart";
-import Map from "./Components/Map";
 import TotalCases from "./Components/TotalCases";
-import { sortData } from "./util";
+import { sortData, showDataOnMap, prettyPrintStat } from "./util";
+import "leaflet/dist/leaflet.css";
+import { Map as LeafletMap, TileLayer } from "react-leaflet";
 
 const useStyles = makeStyles((theme) => ({
   formControl: {
@@ -31,6 +32,10 @@ function App() {
   const [country, setCountry] = useState("worldwide");
   const [countryInfo, setCountryInfo] = useState({});
   const [tableData, setTableData] = useState([]);
+  const [mapCenter, setMapCenter] = useState([34.80746, -40.4796]);
+  const [mapZoom, setMapZoom] = useState(3);
+  const [mapCountries, setMapCountries] = useState([]);
+  const [casesType, setCasesType] = useState("cases");
 
   useEffect(() => {
     fetch("https://disease.sh/v3/covid-19/all")
@@ -48,10 +53,11 @@ function App() {
           console.log(data);
           const countries = data.map((country) => ({
             name: country.country,
-            value: country.countryInfo.iso2,
+            value: country.countryInfo.iso3,
           }));
           const sortedData = sortData(data);
           setTableData(sortedData);
+          setMapCountries(data);
           setCountries(countries);
         });
     };
@@ -72,15 +78,26 @@ function App() {
       .then((data) => {
         setCountry(countryCode);
         setCountryInfo(data);
-        console.log(countryInfo);
+        // console.log(data);
+        if (data.countryInfo) {
+          setMapCenter([data.countryInfo.lat, data.countryInfo.long]);
+          setMapZoom(4);
+        } else {
+          setMapCenter([34.80746, -40.4796]);
+          setMapZoom(3);
+        }
       });
   };
+
   return (
     <div className="app">
       <Grid container md direction="column">
         <Grid container md className="app--header">
-          <h1>COVID 19 Tracker</h1>
-          {/* TODO: drop down */}
+          <div className="app--titleBox">
+            <div className="app--titleBox-title">Pandemx.</div>
+            <div className="app--titleBox-text">COVID 19 TRACKER</div>
+          </div>
+
           <FormControl className={classes.formControl}>
             <Select
               variant="outlined"
@@ -98,36 +115,55 @@ function App() {
           <Grid container md sm={12} className="app--left">
             <Grid container md sm={12} className="app--cards">
               <CasesCard
-                borderColor="#009B09"
+                onClick={(e) => setCasesType("cases")}
+                borderColor="#F83B00"
                 title="Coronavirus Cases"
-                cases={countryInfo.todayCases}
-                total={countryInfo.cases}
+                cases={prettyPrintStat(countryInfo.todayCases)}
+                total={prettyPrintStat(countryInfo.cases)}
               />
               <CasesCard
+                active={casesType === "recovered"}
+                onClick={(e) => setCasesType("recovered")}
                 borderColor="#32BB00"
                 title="Recovered"
-                cases={countryInfo.todayRecovered}
-                total={countryInfo.recovered}
+                cases={prettyPrintStat(countryInfo.todayRecovered)}
+                total={prettyPrintStat(countryInfo.recovered)}
               />
               <CasesCard
+                active={casesType === "deaths"}
+                onClick={(e) => setCasesType("deaths")}
                 borderColor="#DB1B01"
                 title="Deaths"
-                cases={countryInfo.todayDeaths}
-                total={countryInfo.deaths}
+                cases={prettyPrintStat(countryInfo.todayDeaths)}
+                total={prettyPrintStat(countryInfo.deaths)}
               />
             </Grid>
-            <Grid container md sm={12}>
-              <Map />
-            </Grid>
+            <div>
+              <div className="app--map">
+                <LeafletMap
+                  center={mapCenter}
+                  zoom={mapZoom}
+                  scrollWheelZoom={false}
+                >
+                  <TileLayer
+                    attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
+                    url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+                  />
+                  {showDataOnMap(mapCountries, casesType)}
+                </LeafletMap>
+              </div>
+            </div>
           </Grid>
-          <Grid container md={3} justify="center">
-            <Card>
+          <Grid container md={3} justify="center" className="app--right">
+            <Card style={{ width: "100%" }}>
               <CardContent>
                 <div className="app--sidebar-title">Total cases by country</div>
                 <TotalCases data={tableData} />
 
-                <div className="app--sidebar-title">Worldwide new cases</div>
-                <LineChart caseType="cases" />
+                <div className="app--sidebar-title">
+                  Worldwide new {casesType}
+                </div>
+                <LineChart caseType={casesType} />
               </CardContent>
             </Card>
           </Grid>
