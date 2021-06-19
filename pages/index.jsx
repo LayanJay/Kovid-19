@@ -1,4 +1,4 @@
-import Layout from "../Components/Layout";
+import Layout from "../components/Layout";
 import StopSpread from "../components/StopSpread";
 import Worldwide from "../components/Worldwide";
 

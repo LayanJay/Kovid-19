@@ -14,7 +14,7 @@ const Worldwide = ({ data }) => {
       <h2 className="font-semibold text-3xl sm:text-4xl text-center mb-12">
         Worldwide
       </h2>
-      <div className="grid grid-rows-1 grid-cols-1 md:grid-cols-2 gap-6 place-items-center">
+      <div className="grid grid-rows-1 grid-cols-1 md:grid-cols-2 gap-8 place-items-center">
         <div className="md:col-span-1">
           <img
             className="md:w-96 sm:w-72 w-56"
@@ -61,7 +61,14 @@ const Worldwide = ({ data }) => {
             />
           </div>
           <p className="text-gray text-center">
-            Powered by <a href="#">disease.sh</a>
+            Powered by{" "}
+            <a
+              className="hover:text-pink-base transition ease-in"
+              href="https://corona.lmao.ninja"
+              target="_blank"
+            >
+              disease.sh
+            </a>
           </p>
         </div>
       </div>
