@@ -3,7 +3,6 @@ import StopSpread from "../components/StopSpread";
 import Worldwide from "../components/Worldwide";
 
 const Index = ({ data }) => {
-  console.log(data);
   return (
     <Layout title="Kovid-19">
       {/* main section */}
