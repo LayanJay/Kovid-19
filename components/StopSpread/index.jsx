@@ -3,7 +3,7 @@ import { advices } from "../../lib/data";
 
 const StopSpread = () => {
   return (
-    <section className="md:pt-10 md:pb-20">
+    <section className="md:pt-10 md:pb-20 pb-10">
       <h2 className="font-semibold text-3xl sm:text-4xl text-center mb-12">
         Stop the spread of Germs
       </h2>

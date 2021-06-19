@@ -34,6 +34,40 @@ const Index = ({ data }) => {
 
       <StopSpread />
       <Worldwide data={data} />
+
+      <section className="py-10 md:pt-10 md:pb-20 grid grid-rows-1 grid-cols-1 md:grid-cols-2 gap-8 place-items-center">
+        <div className="md:col-span-1">
+          <h3 className="text-2xl sm:text-3xl md:text-4xl font-semibold text-center md:text-left mb-2">
+            Be <span className="text-pink-base">Informed</span>
+          </h3>
+          <h3 className="text-2xl sm:text-3xl md:text-4xl font-semibold text-center md:text-left mb-2">
+            Be <span className="text-pink-base">Prepared</span>
+          </h3>
+          <h3 className="text-2xl sm:text-3xl md:text-4xl font-semibold text-center md:text-left mb-2">
+            Be <span className="text-pink-base">Smart</span>
+          </h3>
+          <h3 className="text-2xl sm:text-3xl md:text-4xl font-semibold text-center md:text-left mb-8">
+            Be <span className="text-pink-base">Safe</span>
+          </h3>
+
+          <h2 className="text-2xl sm:text-3xl md:text-4xl font-semibold text-center md:text-left mb-3">
+            Let's Fight Together
+          </h2>
+          <p className="font-medium text-pink-base text-center md:text-left">
+            #CoronaVirus #Covid19
+          </p>
+        </div>
+        <div className="hidden md:block">
+          <img
+            className="md:w-96 sm:w-72 w-56"
+            src="/section_3.svg"
+            alt="be safe"
+            loading="lazy"
+            width={600}
+            height={600}
+          />
+        </div>
+      </section>
     </Layout>
   );
 };

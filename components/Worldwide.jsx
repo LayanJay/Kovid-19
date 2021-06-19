@@ -10,12 +10,12 @@ const Worldwide = ({ data }) => {
 
   const router = useRouter();
   return (
-    <section className="md:pt-10 md:pb-20">
+    <section className="md:pt-10 md:pb-20 py-10">
       <h2 className="font-semibold text-3xl sm:text-4xl text-center mb-12">
         Worldwide
       </h2>
       <div className="grid grid-rows-1 grid-cols-1 md:grid-cols-2 gap-8 place-items-center">
-        <div className="md:col-span-1">
+        <div className="hidden md:block">
           <img
             className="md:w-96 sm:w-72 w-56"
             src="/section_2.svg"
