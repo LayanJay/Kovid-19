@@ -4,9 +4,15 @@ module.exports = {
   theme: {
     colors: {
       black: '#121212',
-      pink: '#FF4D79',
+      pink: {
+        dark: '#D71747',
+        base: '#FF4D79',
+      },
       gray: '#525252',
       white: '#fff',
+      blue: '#3DC2C3',
+      green: '#3CC782',
+      red: '#D35443',
     },
     extend: {
       fontFamily: {

@@ -1,7 +1,7 @@
 import Layout from "../Components/Layout";
 
 const BeInform = () => {
-  return <Layout>be inform</Layout>;
+  return <Layout title="Be Inform">be inform</Layout>;
 };
 
 export default BeInform;

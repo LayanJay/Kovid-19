@@ -1,5 +1,5 @@
 import "../styles/global.css";
-import "@fontsource/montserrat";
+import "typeface-montserrat";
 
 function MyApp({ Component, pageProps }) {
   return <Component {...pageProps} />;
