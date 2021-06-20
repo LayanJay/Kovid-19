@@ -6,25 +6,28 @@ import { CheckIcon, ChevronDownIcon } from "@heroicons/react/solid";
 
 import Button from "../components/Button";
 import Layout from "../components/Layout";
+import LineChart from "../components/LineChart";
 
 import { prettyPrintStat, buildChartData } from "../lib/util";
 
 const BeInform = ({ chartData, countryInfo, countryCovidData }) => {
   const [caseType, setCaseType] = useState("cases");
   const [country, setCountry] = useState("Worldwide");
+  const [chartDataUpdated, setChartDataUpdated] = useState([]);
 
-  // let countryNames = countryInfo.map((data) => data.country);
+  useEffect(() => {
+    const getChartData = () => {
+      const response = buildChartData(chartData, caseType, country);
 
-  // useEffect(() => {
-  //   if (country === "Worldwide") {
-  //   }
-  // }, [country]);
+      setChartDataUpdated(response);
+    };
+    getChartData();
+  }, [chartData, caseType]);
 
   const router = useRouter();
 
   const handleChange = (e) => {
     setCountry(e);
-    // router.push(`/be-inform?country=${e}`, { scroll: false });
     router.push(
       {
         pathname: "be-inform",
@@ -40,8 +43,11 @@ const BeInform = ({ chartData, countryInfo, countryCovidData }) => {
   return (
     <Layout title="Be Inform">
       <section className="flex flex-col items-center">
-        <h1>Find out the current situation around you</h1>
+        <h1 className="text-black text-3xl sm:text-4xl font-semibold text-center leading-8 mb-6 max-w-2xl">
+          Find out the current situation around you
+        </h1>
         <img
+          className="md:w-52 sm:w-44 w-36 mb-6"
           src="/location.svg"
           alt="location"
           width={200}
@@ -50,7 +56,7 @@ const BeInform = ({ chartData, countryInfo, countryCovidData }) => {
         />
 
         {/* menu bar */}
-        <div className="w-72 m-4">
+        <div className="w-72 m-2">
           <Listbox value={country} onChange={handleChange}>
             <div className="mt-1 relative">
               <Listbox.Button className="w-full py-2 px-4 text-left rounded-lg border-2 border-gray border-opacity-25 cursor-pointer focus:outline-none hover:text-gray transition ease-in text-xl sm:text-2xl font-medium inline-flex items-center justify-between">
@@ -70,7 +76,7 @@ const BeInform = ({ chartData, countryInfo, countryCovidData }) => {
                 leaveFrom="opacity-100"
                 leaveTo="opacity-0"
               >
-                <Listbox.Options className="absolute w-full py-1 mt-1 overflow-auto text-base border-2 border-gray border-opacity-25 bg-white rounded-md shadow-lg max-h-60 focus:outline-none">
+                <Listbox.Options className="absolute z-50 w-full py-1 mt-1 overflow-auto text-base border-2 border-gray border-opacity-25 bg-white rounded-md shadow-lg max-h-60 focus:outline-none">
                   <Listbox.Option
                     key="worldwide"
                     className={({ active }) =>
@@ -151,10 +157,12 @@ const BeInform = ({ chartData, countryInfo, countryCovidData }) => {
         </div>
       </section>
 
-      <section className="md:pt-10 md:pb-20 py-10">
-        <div className="grid grid-rows-1 grid-cols-1 md:grid-cols-2 gap-8 place-items-center">
-          <div>{/* chart goes here */}</div>
-          <div className="md:col-span-1 transition-all duration-200 ease-in">
+      <section className="md:pt-10 md:pb-20 py-5">
+        <div className="grid grid-rows-1 grid-cols-1 md:grid-cols-2 gap-8">
+          <div className="md:col-span-1 max-w-full">
+            <LineChart data={chartDataUpdated} caseType={caseType} />
+          </div>
+          <div className="md:col-span-1 flex flex-col items-center transition-all duration-200 ease-in">
             <div className="inline-flex mb-5">
               <Button value="cases" callback={() => setCaseType("cases")} />
               <Button
@@ -248,7 +256,7 @@ const BeInform = ({ chartData, countryInfo, countryCovidData }) => {
 export default BeInform;
 
 export const getServerSideProps = async (context) => {
-  const countryParam = context.query.country;
+  const countryParam = context.query.country || `Worldwide`;
 
   const historicalData =
     countryParam !== "Worldwide"
@@ -260,7 +268,7 @@ export const getServerSideProps = async (context) => {
   const countryDataByCountry =
     countryParam !== "Worldwide"
       ? `https://corona.lmao.ninja/v2/countries/${countryParam}?yesterday=true`
-      : `https://corona.lmao.ninja/v2/all?yesterday=true`;
+      : `https://corona.lmao.ninja/v2/all`;
 
   // get chart data
   const chartData = await fetch(historicalData).then((res) => res.json());
