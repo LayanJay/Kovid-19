@@ -1,85 +1,86 @@
-import { Fragment } from "react";
-import { Menu, Transition } from "@headlessui/react";
-import { ChevronDownIcon } from "@heroicons/react/solid";
+import { useState } from "react";
+import { Listbox, Transition } from "@headlessui/react";
+import { CheckIcon, ChevronDownIcon } from "@heroicons/react/solid";
 
-function classNames(...classes) {
-  return classes.filter(Boolean).join(" ");
-}
+const people = [
+  { name: "Wade Cooper" },
+  { name: "Arlene Mccoy" },
+  { name: "Devon Webb" },
+  { name: "Tom Cook" },
+  { name: "Tanya Fox" },
+  { name: "Hellen Schmidt" },
+  { name: "Hellen Schmidt" },
+  { name: "Hellen Schmidt" },
+  { name: "Hellen Schmidt" },
+  { name: "Hellen Schmidt" },
+  { name: "Hellen Schmidt" },
+];
 
 export default function MenuBar() {
+  const [selected, setSelected] = useState(people[0]);
+
   return (
-    <Menu as="div" className="relative inline-block text-left">
-      {({ open }) => (
-        <>
-          <div>
-            <Menu.Button className="inline-flex justify-center items-center w-full px-4 py-2  text-black hover:text-gray transition ease-in text-2xl font-medium focus:outline-none">
-              Worldwide
+    <div className="w-72 m-4">
+      <Listbox value={selected} onChange={setSelected}>
+        <div className="mt-1 relative">
+          <Listbox.Button className="w-full py-2 px-4 text-left rounded-lg border-2 border-gray border-opacity-25 cursor-pointer focus:outline-none hover:text-gray transition ease-in text-xl sm:text-2xl font-medium inline-flex items-center justify-between">
+            <span className="">{selected.name}</span>
+            <span className="pointer-events-none">
               <ChevronDownIcon
-                className="-mr-1 ml-2 h-6 w-6"
+                className="w-7 h-7 text-gray"
                 aria-hidden="true"
               />
-            </Menu.Button>
-          </div>
-
+            </span>
+          </Listbox.Button>
           <Transition
-            show={open}
-            as={Fragment}
-            enter="transition ease-out duration-100"
-            enterFrom="transform opacity-0 scale-95"
-            enterTo="transform opacity-100 scale-100"
-            leave="transition ease-in duration-75"
-            leaveFrom="transform opacity-100 scale-100"
-            leaveTo="transform opacity-0 scale-95"
+            enter="transition duration-150 ease-out"
+            enterFrom="opacity-0"
+            enterTo="opacity-100"
+            leave="transition duration-150 ease-out"
+            leaveFrom="opacity-100"
+            leaveTo="opacity-0"
           >
-            <Menu.Items
-              static
-              className="origin-top-right absolute right-0 mt-2 w-56 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 focus:outline-none"
-            >
-              <div className="py-1">
-                <Menu.Item>
-                  {({ active }) => (
-                    <a
-                      href="#"
-                      className={classNames(
-                        active ? "bg-gray text-black" : "text-gray",
-                        "block px-4 py-2 text-sm"
-                      )}
-                    >
-                      Account settings
-                    </a>
+            <Listbox.Options className="absolute w-full py-1 mt-1 overflow-auto text-base border-2 border-gray border-opacity-25 bg-white rounded-md shadow-lg max-h-60 focus:outline-none">
+              {people.map((person, personIdx) => (
+                <Listbox.Option
+                  key={personIdx}
+                  className={({ active }) =>
+                    `${
+                      active
+                        ? "text-black bg-pink-base bg-opacity-80"
+                        : "text-gray"
+                    }
+                          cursor-pointer select-none relative py-2 pl-10 pr-4`
+                  }
+                  value={person}
+                >
+                  {({ selected, active }) => (
+                    <>
+                      <span
+                        className={`${
+                          selected ? "font-medium" : "font-normal"
+                        } block`}
+                      >
+                        {person.name}
+                      </span>
+                      {selected ? (
+                        <span
+                          className={`${
+                            active ? "text-pink-dark" : "text-pink-base"
+                          }
+                                absolute inset-y-0 left-0 flex items-center pl-3`}
+                        >
+                          <CheckIcon className="w-5 h-5" aria-hidden="true" />
+                        </span>
+                      ) : null}
+                    </>
                   )}
-                </Menu.Item>
-                <Menu.Item>
-                  {({ active }) => (
-                    <a
-                      href="#"
-                      className={classNames(
-                        active ? "bg-gray-100 text-gray-900" : "text-gray-700",
-                        "block px-4 py-2 text-sm"
-                      )}
-                    >
-                      Support
-                    </a>
-                  )}
-                </Menu.Item>
-                <Menu.Item>
-                  {({ active }) => (
-                    <a
-                      href="#"
-                      className={classNames(
-                        active ? "bg-gray-100 text-gray-900" : "text-gray-700",
-                        "block px-4 py-2 text-sm"
-                      )}
-                    >
-                      License
-                    </a>
-                  )}
-                </Menu.Item>
-              </div>
-            </Menu.Items>
+                </Listbox.Option>
+              ))}
+            </Listbox.Options>
           </Transition>
-        </>
-      )}
-    </Menu>
+        </div>
+      </Listbox>
+    </div>
   );
 }
