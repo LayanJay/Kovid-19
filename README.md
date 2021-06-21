@@ -1,7 +1,7 @@
 # Kovid-19
 
 <p>
-    <center><img src='./public/logo.svg' /></center>
+    <center><img src='./public/logo-white.svg' /></center>
 </p>
 
 ## Introduction
