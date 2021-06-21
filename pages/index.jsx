@@ -1,7 +1,12 @@
+// components
 import Layout from "../components/Layout";
 import StopSpread from "../components/StopSpread";
 import Worldwide from "../components/Worldwide";
 
+/**
+ * Server side props
+ * @data
+ */
 const Index = ({ data }) => {
   return (
     <Layout title="Kovid-19">
@@ -72,6 +77,10 @@ const Index = ({ data }) => {
 };
 
 export default Index;
+
+/**
+ * Getting server side data
+ */
 
 export const getServerSideProps = async () => {
   const allCasesUrl = `https://corona.lmao.ninja/v2/all`;

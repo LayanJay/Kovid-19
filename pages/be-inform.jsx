@@ -247,6 +247,11 @@ const BeInform = ({ countryInfo, countryCovidData }) => {
 
 export default BeInform;
 
+/**
+ * Getting server side data
+ * @context
+ */
+
 export const getServerSideProps = async (context) => {
   const countryParam = context.query.country || `Worldwide`;
 
