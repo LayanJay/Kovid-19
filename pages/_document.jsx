@@ -7,20 +7,20 @@ class MyDocument extends Document {
         <Head>
           <meta
             name="description"
-            content="Kovid-19 is an awareness program built for spread the word to be safe and be informed the correct data arround the globe. #Coronavirus #Covid-19"
+            content="Kovid-19 is an awareness program built to spread the word to be safe and be informed of the correct data around the globe. #Coronavirus #Covid-19"
           />
           <meta name="image" content="/logoPng.png" />
           <meta property="og:title" content="Kovid-19" />
           <meta
             property="og:description"
-            content="Kovid-19 is an awareness program built for spread the word to be safe and be informed the correct data arround the globe. #Coronavirus #Covid-19"
+            content="Kovid-19 is an awareness program built to spread the word to be safe and be informed of the correct data around the globe. #Coronavirus #Covid-19"
           />
           <meta property="og:image" content="/logoPng.png" />
           <meta name="twitter:creator" content="@__x__LEO__x__" />
           <meta name="twitter:title" content="Kovid-19" />
           <meta
             name="twitter:description"
-            content="Kovid-19 is an awareness program built for spread the word to be safe and be informed the correct data arround the globe. #Coronavirus #Covid-19"
+            content="Kovid-19 is an awareness program built to spread the word to be safe and be informed of the correct data around the globe. #Coronavirus #Covid-19"
           />
           <meta name="twitter:image" content="/logoPng.png" />
 

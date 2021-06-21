@@ -1,13 +1,26 @@
-# In development...
+# Kovid-19
 
-## Available Scripts
+<p>
+    <center><img src='./public/logo.svg' /></center>
+</p>
 
-In the project directory, you can run:
+## Introduction
 
-### `npm start`
+Kovid-19 is an awareness program built to spread the word to be safe and be informed of the correct data around the globe. #Coronavirus #Covid-19.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+With this web application, users can easily find out the data which related to Covid-19 pandemic situation.
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+## Tech Stack
+
+- Nextjs
+- Tailwindcss
+- vercel
+- desease.sh (API)
+
+## Screenshots
+
+<p>
+    <center><img src='./screenshots/page1.jpg' width='400' /><img src='./screenshots/page2.jpg' width='400' /></center>
+</p>
+
+NOTE: The previously built Covid-19 tracker is now deprecated and no longer maintained.
