@@ -9,7 +9,7 @@ const Button = ({ value, callback }) => {
       : `bg-pink-base hover:bg-pink-dark text-white`;
   return (
     <button
-      className={`py-2 w-28 mx-2 text-center font-medium ${style} transition ease-in duration-200 focus:outline-none rounded-lg shadow-lg capitalize`}
+      className={`py-2 w-24 sm:w-28 mx-2 text-center text-sm font-medium ${style} transition ease-in duration-200 focus:outline-none rounded-lg shadow-lg capitalize`}
       onClick={callback}
     >
       {value}
