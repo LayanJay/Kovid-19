@@ -2,7 +2,7 @@ import { useState } from "react";
 import { useRouter } from "next/router";
 
 import { Listbox, Transition } from "@headlessui/react";
-import { CheckIcon, ChevronDownIcon } from "@heroicons/react/solid";
+import { HiCheck, HiChevronDown } from "react-icons/hi";
 
 // components
 import Button from "../components/Button";
@@ -59,7 +59,7 @@ const BeInform = ({ countryInfo, countryCovidData }) => {
               <Listbox.Button className="w-full py-2 px-4 text-left rounded-lg border-2 border-gray border-opacity-25 cursor-pointer focus:outline-none hover:text-gray transition ease-in text-xl sm:text-2xl font-medium inline-flex items-center justify-between">
                 <span className="">{country}</span>
                 <span className="pointer-events-none">
-                  <ChevronDownIcon
+                  <HiChevronDown
                     className="w-7 h-7 text-gray"
                     aria-hidden="true"
                   />
@@ -102,7 +102,7 @@ const BeInform = ({ countryInfo, countryCovidData }) => {
                             }
                                 absolute inset-y-0 left-0 flex items-center pl-3`}
                           >
-                            <CheckIcon className="w-5 h-5" aria-hidden="true" />
+                            <HiCheck className="w-5 h-5" aria-hidden="true" />
                           </span>
                         ) : null}
                       </>
@@ -137,10 +137,7 @@ const BeInform = ({ countryInfo, countryCovidData }) => {
                               }
                                 absolute inset-y-0 left-0 flex items-center pl-3`}
                             >
-                              <CheckIcon
-                                className="w-5 h-5"
-                                aria-hidden="true"
-                              />
+                              <HiCheck className="w-5 h-5" aria-hidden="true" />
                             </span>
                           ) : null}
                         </>
