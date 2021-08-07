@@ -1,8 +1,6 @@
 # Kovid-19
 
-<p>
-    <center><img src='./public/logo-white.svg' /></center>
-</p>
+![Kovid-19](https://socialify.git.ci/LayanJay/Kovid-19/image?description=1&forks=1&language=1&logo=https%3A%2F%2Fraw.githubusercontent.com%2FLayanJay%2FKovid-19%2F2b5f519de6311e4bce3e144b7feca46984f1ca35%2Fpublic%2Flogo-white.svg&owner=1&pattern=Brick%20Wall&stargazers=1&theme=Dark)
 
 ## Introduction
 
